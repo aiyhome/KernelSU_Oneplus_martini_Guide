@@ -1,4 +1,4 @@
-name: Pixel OS Inline
+name: LineageOS
 
 
 on:
@@ -13,12 +13,12 @@ on:
         KERNEL_SOURCE:
           description: 'Kernel Source'
           required: true
-          default: "https://github.com/bheatleyyy/kernel_oplus_sm8350.git"
+          default: "https://github.com/aiyhome/LineageOS_android_kernel_oneplus_sm8350.git"
           type: string
         KERNEL_SOURCE_BRANCH:
           description: 'kernel Branch'
           required: true
-          default: "thirteen"
+          default: "lineage-20"
           type: string
         KERNEL_DEFCONFIG:
           description: 'Kernel Config'
@@ -70,7 +70,7 @@ jobs:
         if: github.event.inputs.CCACHE_CONFIG == 'true'
         uses: hendrikmuhs/ccache-action@v1.2
         with:
-          key: PixelOS-inline
+          key: LineageOS
 
       - name: Setup Environment
         run: |
@@ -144,25 +144,25 @@ jobs:
           if test -e ./Image; then
              zip -r Kernel.zip *
              test -e ./tools/zipsigner.jar || wget -O ./tools/zipsigner.jar https://forum.xda-developers.com/attachments/zipsigner-3-0-jar.4586999/
-             java -jar ./tools/zipsigner.jar ./Kernel.zip ./PixelOS-Inline-martini-${{ env.TAG_NAME }}.zip
+             java -jar ./tools/zipsigner.jar ./Kernel.zip ./LineageOS-martini-${{ env.TAG_NAME }}.zip
           fi
 
       - name: Upload Artifact
         if: github.event.inputs.RELEASE_CONFIG == 'false'
         uses: actions/upload-artifact@v3
         with:
-          name: PixelOS-Inline-martini-${{ env.TAG_NAME }}
+          name: LineageOS-martini-${{ env.TAG_NAME }}
           path: |
-            kernel/AnyKernel3/PixelOS-Inline-martini-${{ env.TAG_NAME }}.zip
+            kernel/AnyKernel3/LineageOS-martini-${{ env.TAG_NAME }}.zip
             kernel/repacker/vendor_dlkm.img
 
       - name: Upload to Release
         if: github.event.inputs.RELEASE_CONFIG == 'true'
         uses: ncipollo/release-action@v1
         with:
-          artifacts: "kernel/AnyKernel3/PixelOS-Inline-martini-${{ env.TAG_NAME }}.zip,kernel/repacker/vendor_dlkm.img"
-          tag: "PixelOS-Inline-martini-${{ env.TAG_NAME }}"
-          name: "PixelOS-Inline-martini-${{ env.TAG_NAME }}"
+          artifacts: "kernel/AnyKernel3/LineageOS-martini-${{ env.TAG_NAME }}.zip,kernel/repacker/vendor_dlkm.img"
+          tag: "LineageOS-martini-${{ env.TAG_NAME }}"
+          name: "LineageOS-martini-${{ env.TAG_NAME }}"
           allowUpdates: true
           replacesArtifacts: true
           token: ${{ secrets.GITHUB_TOKEN }}
