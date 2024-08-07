@@ -60,7 +60,7 @@ jobs:
         if: github.event.inputs.CCACHE_CONFIG == 'true'
         uses: hendrikmuhs/ccache-action@v1.2
         with:
-          key: PixelOS-inline
+          key: LineageOS-inline
 
       - name: Setup Environment
         run: |
@@ -137,7 +137,7 @@ jobs:
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: PixelOS-martini-${{ env.TAG_NAME }}
+          name: LineageOS-martini-${{ env.TAG_NAME }}
           path: |
             kernel/AnyKernel3/*
 
@@ -145,9 +145,9 @@ jobs:
         if: github.event.inputs.RELEASE_CONFIG == 'true'
         uses: ncipollo/release-action@v1
         with:
-          artifacts: "kernel/out/arch/arm64/boot/PixelOS-martini-${{ env.TAG_NAME }}.zip"
-          tag: "ONEPLUS9RT-PixelOS-${{ env.TAG_NAME }}"
-          name: "PixelOS martini ${{ env.TAG_NAME }}"
+          artifacts: "kernel/out/arch/arm64/boot/LineageOS-martini-${{ env.TAG_NAME }}.zip"
+          tag: "ONEPLUS9RT-LineageOS-${{ env.TAG_NAME }}"
+          name: "LineageOS martini ${{ env.TAG_NAME }}"
           allowUpdates: true
           replacesArtifacts: true
           token: ${{ secrets.GITHUB_TOKEN }}
