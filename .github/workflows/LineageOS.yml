@@ -13,12 +13,12 @@ on:
         KERNEL_SOURCE:
           description: 'Kernel Source'
           required: true
-          default: "https://github.com/beet-stuffs/android_kernel_oneplus_sm8350.git"
+          default: "https://github.com/LineageOS/android_device_oneplus_martini.git"
           type: string
         KERNEL_SOURCE_BRANCH:
           description: 'kernel Branch'
           required: true
-          default: "fourteen-qpr2"
+          default: "lineage-21"
           type: string
         KERNEL_DEFCONFIG:
           description: 'Kernel Config'
